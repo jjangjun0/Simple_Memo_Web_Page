@@ -1,0 +1,19 @@
+# ALTER
+ALTER TABLE EXAM ADD PRIMARY KEY(student_code, exam_seq);
+ALTER TABLE EXAM ADD CONSTRAINT exam_fk_student_code FOREIGN KEY(student_code) REFERENCES STUDENT(student_code);
+
+# UPDATE
+INSERT INTO STUDENT VALUES('s0', '수강생', '20220331', 'M', '01000000005', 'm1');
+UPDATE STUDENT SET major_code= 'm2' where student_code= 's0';
+
+# DELETE
+DELETE FROM STUDENT WHERE student_code = 's0';
+
+# SELECT
+SELECT * FROM STUDENT;
+SELECT * FROM STUDENT WHERE STUDENT_CODE = 's1';
+SELECT name, major_code FROM STUDENT WHERE student_code = 's1';
+
+# JOIN
+SELECT s.name, s.major_code, m.major_name FROM STUDENT s JOIN MAJOR m ON s.major_code = m.major_code;
+SELECT s.name, s.major_code, m.major_name FROM STUDENT s, MAJOR m WHERE s.major_code = m.major_code;
