@@ -16,7 +16,7 @@ import java.util.List;
 public class MemoService { // memoService 이름으로 bean 역할로 저장된다.
     // 1. 생성자 주입
     private final MemoRepository memoRepository;
-
+    @Autowired
     public MemoService(MemoRepository memoRepository) {
         this.memoRepository = memoRepository;
     }
@@ -33,15 +33,15 @@ public class MemoService { // memoService 이름으로 bean 역할로 저장된�
 
     private MemoRepository memoRepository4;
     // 4. 직접 Autowired 에 해당하는 구현을 작성
-    @Autowired
-    public MemoService(ApplicationContext context) {
-        // 1. 'Bean' 이름으로 가져오기
-        // MemoRepository memoRepository4 = (MemoRepository) context.getBean("memoRepository4");
-
-        // 2. 'Bean' 클래스 형식으로 가져오기
-        MemoRepository memoRepository4 = context.getBean(MemoRepository.class);
-        this.memoRepository = memoRepository4;
-    }
+//    @Autowired
+//    public MemoService(ApplicationContext context) {
+//        // 1. 'Bean' 이름으로 가져오기
+//        // MemoRepository memoRepository4 = (MemoRepository) context.getBean("memoRepository4");
+//
+//        // 2. 'Bean' 클래스 형식으로 가져오기
+//        MemoRepository memoRepository4 = context.getBean(MemoRepository.class);
+//        this.memoRepository = memoRepository4;
+//    }
 
 
 
