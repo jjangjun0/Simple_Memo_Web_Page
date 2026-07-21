@@ -4,15 +4,48 @@ import com.example.memo_practice.dto.MemoRequestDto;
 import com.example.memo_practice.dto.MemoResponseDto;
 import com.example.memo_practice.entity.Memo;
 import com.example.memo_practice.repository.MemoRepository;
-import org.springframework.jdbc.core.JdbcTemplate;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
-public class MemoService {
+@Service
+// @RequiredArgsConstructor // final 변수를 bean으로 등록
+public class MemoService { // memoService 이름으로 bean 역할로 저장된다.
+    // 1. 생성자 주입
     private final MemoRepository memoRepository;
 
-    public MemoService(JdbcTemplate jdbcTemplate) {
-        this.memoRepository = new MemoRepository(jdbcTemplate);
+    public MemoService(MemoRepository memoRepository) {
+        this.memoRepository = memoRepository;
     }
+    // 2. Method 주입
+    private MemoRepository memoRepository2; // 변경 가능하도록
+    @Autowired
+    public void setDi(MemoRepository memoRepository) {
+        this.memoRepository2 = memoRepository;
+    }
+
+    // 3. field 주입
+    @Autowired
+    private MemoRepository memoRepository3;
+
+    private MemoRepository memoRepository4;
+    // 4. 직접 Autowired 에 해당하는 구현을 작성
+    @Autowired
+    public MemoService(ApplicationContext context) {
+        // 1. 'Bean' 이름으로 가져오기
+        // MemoRepository memoRepository4 = (MemoRepository) context.getBean("memoRepository4");
+
+        // 2. 'Bean' 클래스 형식으로 가져오기
+        MemoRepository memoRepository4 = context.getBean(MemoRepository.class);
+        this.memoRepository = memoRepository4;
+    }
+
+
+
+
     public MemoResponseDto createMemo(MemoRequestDto requestDto) {
         // RequestDto -> Entity
         Memo memo = new Memo(requestDto);
