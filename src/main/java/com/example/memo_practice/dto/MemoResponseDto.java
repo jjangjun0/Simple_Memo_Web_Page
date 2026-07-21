@@ -1,4 +1,4 @@
-package com.example.memo_practice.controller;
+package com.example.memo_practice.dto;
 
 import com.example.memo_practice.entity.Memo;
 import lombok.Getter;

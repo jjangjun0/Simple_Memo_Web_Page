@@ -1,6 +1,6 @@
 package com.example.memo_practice.entity;
 
-import com.example.memo_practice.controller.MemoRequestDto;
+import com.example.memo_practice.dto.MemoRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
