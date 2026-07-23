@@ -34,7 +34,10 @@ dependencies {
 
 	// MySQL
 	implementation 'mysql:mysql-connector-java:8.0.28'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	// implementation 'org.springframework.boot:spring-boot-starter-data-jdbc' // jpa를 하게 되면 필요 없다.
+
+	// JPA 설정
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 }
 
 tasks.named('test') {
